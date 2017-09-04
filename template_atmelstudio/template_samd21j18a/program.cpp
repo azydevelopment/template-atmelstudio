@@ -5,7 +5,6 @@
 /* PUBLIC */
 
 CProgram::CProgram() :
-	ILogger(),
 	m_usart({}),
 	m_enable_logger(false) {
 }
