@@ -30,8 +30,9 @@
       <framework-data>
   <options>
     <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
-    <option id="sam0.drivers.system" value="Add" config="" content-id="Atmel.ASF" />
     <option id="sam0.drivers.port" value="Add" config="" content-id="Atmel.ASF" />
+    <option id="sam0.drivers.system" value="Add" config="" content-id="Atmel.ASF" />
+    <option id="sam0.drivers.sercom.usart" value="Add" config="polled" content-id="Atmel.ASF" />
     <option id="sam0.utils.linker_scripts" value="Add" config="" content-id="Atmel.ASF" />
   </options>
   <configurations />
@@ -201,6 +202,13 @@
     <file path="src/ASF/sam0/drivers/port/port.c" framework="" version="3.35.1" source="sam0\drivers\port\port.c" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/sam0/drivers/port/quick_start/qs_port_basic.h" framework="" version="3.35.1" source="sam0\drivers\port\quick_start\qs_port_basic.h" changed="False" content-id="Atmel.ASF" />
     <file path="src/ASF/sam0/drivers/port/port.h" framework="" version="3.35.1" source="sam0\drivers\port\port.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/sercom.c" framework="" version="3.35.1" source="sam0\drivers\sercom\sercom.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/sercom_pinout.h" framework="" version="3.35.1" source="sam0\drivers\sercom\sercom_pinout.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/sercom.h" framework="" version="3.35.1" source="sam0\drivers\sercom\sercom.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/usart/usart.c" framework="" version="3.35.1" source="sam0\drivers\sercom\usart\usart.c" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/usart/quick_start/qs_usart_basic_use.h" framework="" version="3.35.1" source="sam0\drivers\sercom\usart\quick_start\qs_usart_basic_use.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/usart/usart.h" framework="" version="3.35.1" source="sam0\drivers\sercom\usart\usart.h" changed="False" content-id="Atmel.ASF" />
+    <file path="src/ASF/sam0/drivers/sercom/usart/quick_start_dma/qs_usart_dma_use.h" framework="" version="3.35.1" source="sam0\drivers\sercom\usart\quick_start_dma\qs_usart_dma_use.h" changed="False" content-id="Atmel.ASF" />
   </files>
   <documentation help="http://asf.atmel.com/docs/3.35.1/common.applications.user_application.sam0_system.user_board.atsamd21j18a/html/index.html" />
   <offline-documentation help="" />
@@ -225,6 +233,7 @@
       <Value>NDEBUG</Value>
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM0PLUS=true</Value>
+      <Value>USART_CALLBACK_MODE=false</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -254,6 +263,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -266,6 +277,7 @@
       <Value>NDEBUG</Value>
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM0PLUS=true</Value>
+      <Value>USART_CALLBACK_MODE=false</Value>
     </ListValues>
   </armgcccpp.compiler.symbols.DefSymbols>
   <armgcccpp.compiler.directories.IncludePaths>
@@ -295,6 +307,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.compiler.directories.IncludePaths>
   <armgcccpp.compiler.optimization.level>Optimize for size (-Os)</armgcccpp.compiler.optimization.level>
@@ -341,8 +355,11 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.assembler.general.IncludePaths>
+  <armgcccpp.preprocessingassembler.general.AssemblerFlags>-DUSART_CALLBACK_MODE=false</armgcccpp.preprocessingassembler.general.AssemblerFlags>
   <armgcccpp.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\atmel\SAMD21_DFP\1.2.276\samd21a\include</Value>
@@ -370,6 +387,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.preprocessingassembler.general.IncludePaths>
 </ArmGccCpp>
@@ -388,6 +407,7 @@
       <Value>DEBUG</Value>
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM0PLUS=true</Value>
+      <Value>USART_CALLBACK_MODE=false</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -417,6 +437,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -430,6 +452,7 @@
       <Value>DEBUG</Value>
       <Value>BOARD=USER_BOARD</Value>
       <Value>ARM_MATH_CM0PLUS=true</Value>
+      <Value>USART_CALLBACK_MODE=false</Value>
     </ListValues>
   </armgcccpp.compiler.symbols.DefSymbols>
   <armgcccpp.compiler.directories.IncludePaths>
@@ -459,6 +482,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.compiler.directories.IncludePaths>
   <armgcccpp.compiler.optimization.level>Optimize (-O1)</armgcccpp.compiler.optimization.level>
@@ -506,9 +531,12 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.assembler.general.IncludePaths>
   <armgcccpp.assembler.debugging.DebugLevel>Default (-g)</armgcccpp.assembler.debugging.DebugLevel>
+  <armgcccpp.preprocessingassembler.general.AssemblerFlags>-DUSART_CALLBACK_MODE=false</armgcccpp.preprocessingassembler.general.AssemblerFlags>
   <armgcccpp.preprocessingassembler.general.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\atmel\SAMD21_DFP\1.2.276\samd21a\include</Value>
@@ -536,6 +564,8 @@
       <Value>../src</Value>
       <Value>../src/config</Value>
       <Value>../src/ASF/sam0/drivers/port</Value>
+      <Value>../src/ASF/sam0/drivers/sercom</Value>
+      <Value>../src/ASF/sam0/drivers/sercom/usart</Value>
     </ListValues>
   </armgcccpp.preprocessingassembler.general.IncludePaths>
   <armgcccpp.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcccpp.preprocessingassembler.debugging.DebugLevel>
@@ -549,6 +579,12 @@
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="program.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="program.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\ASF\common2\boards\user_board\init.c">
       <SubType>compile</SubType>
     </Compile>
@@ -580,6 +616,27 @@
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam0\drivers\port\port.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\sercom\sercom.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\sercom\sercom_pinout.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\sercom.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\usart\quick_start\qs_usart_basic_use.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam0\drivers\sercom\usart\quick_start_dma\qs_usart_dma_use.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam0\drivers\sercom\usart\usart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam0\drivers\sercom\usart\usart.h">
       <SubType>compile</SubType>
     </None>
     <Compile Include="src\ASF\sam0\drivers\system\clock\clock_samd21_r21_da_ha1\clock.c">
@@ -1054,6 +1111,10 @@
     <Folder Include="src\ASF\sam0\drivers\" />
     <Folder Include="src\ASF\sam0\drivers\port\" />
     <Folder Include="src\ASF\sam0\drivers\port\quick_start\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\usart\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\usart\quick_start\" />
+    <Folder Include="src\ASF\sam0\drivers\sercom\usart\quick_start_dma\" />
     <Folder Include="src\ASF\sam0\drivers\system\" />
     <Folder Include="src\ASF\sam0\drivers\system\clock\" />
     <Folder Include="src\ASF\sam0\drivers\system\clock\clock_samd21_r21_da_ha1\" />
